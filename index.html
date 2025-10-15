@@ -16,6 +16,17 @@
                     <h1>Open Web Playground</h1>
                 </div>
                 
+                <!-- Theme Switcher Button -->
+                <button class="theme-toggle" id="theme-toggle" aria-label="Toggle dark/light mode">
+                    <svg class="sun-icon" width="20" height="20" viewBox="0 0 20 20" fill="currentColor">
+                        <circle cx="10" cy="10" r="5"/>
+                        <path d="M10 0v3M10 17v3M0 10h3M17 10h3M2.93 2.93l2.12 2.12M14.95 14.95l2.12 2.12M2.93 17.07l2.12-2.12M14.95 5.05l2.12-2.12"/>
+                    </svg>
+                    <svg class="moon-icon" width="20" height="20" viewBox="0 0 20 20" fill="currentColor">
+                        <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"/>
+                    </svg>
+                </button>
+                
                 <!-- Hamburger Menu Button -->
                 <button class="hamburger" 
                         id="hamburger" 
@@ -40,29 +51,32 @@
     
     <main>
         <!-- Contributors: Describe your project's purpose and goals -->
-        <section id="about">
+        <section id="about" class="card">
             <h2>About This Project</h2>
-            <p>A collaborative playground for learning web development.</p>
+            <p>A collaborative playground for learning web development with modern design features including dark mode support and glassmorphism effects.</p>
         </section>
         
         <!-- Contributors: Highlight key features or benefits here -->
-        <section id="features">
+        <section id="features" class="card">
             <h2>Features</h2>
             <ul>
                 <li>Open source collaboration</li>
                 <li>Beginner-friendly environment</li>
                 <li>Responsive Navigation Menu</li>
+                <li>Dark/Light mode theme switcher</li>
+                <li>Modern glassmorphism design</li>
+                <li>Smooth transitions and animations</li>
             </ul>
         </section>
         
         <!-- Contributors: Add interactive demos and live examples -->
-        <section id="demo">
+        <section id="demo" class="card">
             <h2>Demo</h2>
-            <p>Try resizing your browser window to see the responsive navigation in action!</p>
+            <p>Try resizing your browser window to see the responsive navigation in action! Click the theme toggle button to switch between light and dark modes.</p>
         </section>
         
         <!-- Contributors: Explain how others can get involved -->
-        <section id="contribute">
+        <section id="contribute" class="card">
             <h2>Contribute</h2>
             <p>We welcome contributions from developers of all skill levels!</p>
         </section>
