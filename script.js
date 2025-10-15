@@ -142,6 +142,47 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
     });
+
+    // ===== THEME SWITCHER FUNCTIONALITY =====
+    const themeToggle = document.getElementById('theme-toggle');
+    
+    // Check for saved theme preference or default to 'light'
+    const currentTheme = localStorage.getItem('theme') || 'light';
+    
+    // Apply saved theme on page load
+    if (currentTheme === 'dark') {
+        document.body.classList.add('dark-mode');
+    }
+    
+    // Theme toggle function
+    function toggleTheme() {
+        document.body.classList.toggle('dark-mode');
+        
+        // Save theme preference
+        const theme = document.body.classList.contains('dark-mode') ? 'dark' : 'light';
+        localStorage.setItem('theme', theme);
+        
+        // Update ARIA label
+        const newLabel = theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode';
+        themeToggle.setAttribute('aria-label', newLabel);
+    }
+    
+    // Theme toggle click event
+    if (themeToggle) {
+        themeToggle.addEventListener('click', toggleTheme);
+        
+        // Keyboard support for theme toggle
+        themeToggle.addEventListener('keydown', function(e) {
+            if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                toggleTheme();
+            }
+        });
+        
+        // Set initial ARIA label
+        const initialLabel = currentTheme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode';
+        themeToggle.setAttribute('aria-label', initialLabel);
+    }
 });
 
 /**
