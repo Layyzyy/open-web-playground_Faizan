@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Gallery</title>
+    <style>
+        /* Reset default styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 2rem;
+        }
+        
+        /* Main container */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        h1 {
+            text-align: center;
+            color: white;
+            margin-bottom: 2rem;
+        }
+        
+        /* Gallery grid layout */
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+        
+        /* Individual gallery item */
+        .gallery-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 10px;
+            cursor: pointer;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+            transition: transform 0.3s;
+        }
+        
+        .gallery-item:hover {
+            transform: scale(1.05);
+        }
+        
+        /* Gallery images */
+        .gallery-item img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            display: block;
+        }
+        
+        /* Image caption overlay */
+        .gallery-item .caption {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: rgba(0,0,0,0.7);
+            color: white;
+            padding: 1rem;
+            transform: translateY(100%);
+            transition: transform 0.3s;
+        }
+        
+        .gallery-item:hover .caption {
+            transform: translateY(0);
+        }
+        
+        /* Modal (lightbox) styles */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.9);
+            overflow: auto;
+        }
+        
+        /* Show modal when active */
+        .modal.active {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        /* Modal content */
+        .modal-content {
+            position: relative;
+            max-width: 90%;
+            max-height: 90%;
+        }
+        
+        .modal-content img {
+            width: 100%;
+            height: auto;
+            border-radius: 10px;
+        }
+        
+        /* Close button */
+        .close {
+            position: absolute;
+            top: 20px;
+            right: 40px;
+            color: white;
+            font-size: 40px;
+            font-weight: bold;
+            cursor: pointer;
+            z-index: 1001;
+        }
+        
+        .close:hover {
+            color: #ff6b6b;
+        }
+        
+        /* Navigation arrows */
+        .prev, .next {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            color: white;
+            font-size: 40px;
+            font-weight: bold;
+            cursor: pointer;
+            padding: 1rem;
+            user-select: none;
+            z-index: 1001;
+        }
+        
+        .prev {
+            left: 20px;
+        }
+        
+        .next {
+            right: 20px;
+        }
+        
+        .prev:hover, .next:hover {
+            color: #667eea;
+        }
+        
+        /* Caption in modal */
+        .modal-caption {
+            text-align: center;
+            color: white;
+            padding: 1rem;
+            font-size: 18px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Image Gallery</h1>
+        
+        <!-- Gallery grid -->
+        <div class="gallery" id="gallery">
+            <!-- Gallery items will be generated dynamically by JavaScript -->
+        </div>
+    </div>
+    
+    <!-- Modal for viewing full-size images -->
+    <div class="modal" id="modal">
+        <!-- Close button -->
+        <span class="close" id="closeModal">&times;</span>
+        
+        <!-- Previous button -->
+        <span class="prev" id="prevBtn">❮</span>
+        
+        <!-- Modal content -->
+        <div class="modal-content">
+            <img id="modalImage" src="" alt="Gallery image">
+            <div class="modal-caption" id="modalCaption"></div>
+        </div>
+        
+        <!-- Next button -->
+        <span class="next" id="nextBtn">❯</span>
+    </div>
+
+    <script>
+        // Array of image data (using placeholder images from picsum.photos)
+        const images = [
+            {
+                src: 'https://picsum.photos/400/300?random=1',
+                caption: 'Beautiful Landscape 1'
+            },
+            {
+                src: 'https://picsum.photos/400/300?random=2',
+                caption: 'Stunning Nature 2'
+            },
+            {
+                src: 'https://picsum.photos/400/300?random=3',
+                caption: 'Amazing View 3'
+            },
+            {
+                src: 'https://picsum.photos/400/300?random=4',
+                caption: 'Wonderful Scene 4'
+            },
+            {
+                src: 'https://picsum.photos/400/300?random=5',
+                caption: 'Peaceful Moment 5'
+            },
+            {
+                src: 'https://picsum.photos/400/300?random=6',
+                caption: 'Serene Beauty 6'
+            }
+        ];
+        
+        // Get DOM elements
+        const gallery = document.getElementById('gallery');
+        const modal = document.getElementById('modal');
+        const modalImage = document.getElementById('modalImage');
+        const modalCaption = document.getElementById('modalCaption');
+        const closeModal = document.getElementById('closeModal');
+        const prevBtn = document.getElementById('prevBtn');
+        const nextBtn = document.getElementById('nextBtn');
+        
+        // Current image index
+        let currentIndex = 0;
+        
+        // Generate gallery items dynamically
+        function createGallery() {
+            images.forEach((image, index) => {
+                // Create gallery item container
+                const item = document.createElement('div');
+                item.className = 'gallery-item';
+                
+                // Create image element
+                const img = document.createElement('img');
+                img.src = image.src;
+                img.alt = image.caption;
+                
+                // Create caption element
+                const caption = document.createElement('div');
+                caption.className = 'caption';
+                caption.textContent = image.caption;
+                
+                // Add click event to open modal
+                item.addEventListener('click', () => openModal(index));
+                
+                // Append elements
+                item.appendChild(img);
+                item.appendChild(caption);
+                gallery.appendChild(item);
+            });
+        }
+        
+        // Open modal with selected image
+        function openModal(index) {
+            currentIndex = index;
+            modal.classList.add('active');
+            updateModalImage();
+        }
+        
+        // Close modal
+        function closeModalFunc() {
+            modal.classList.remove('active');
+        }
+        
+        // Update modal image and caption
+        function updateModalImage() {
+            modalImage.src = images[currentIndex].src;
+            modalCaption.textContent = images[currentIndex].caption;
+        }
+        
+        // Show previous image
+        function showPrevImage() {
+            currentIndex = (currentIndex - 1 + images.length) % images.length;
+            updateModalImage();
+        }
+        
+        // Show next image
+        function showNextImage() {
+            currentIndex = (currentIndex + 1) % images.length;
+            updateModalImage();
+        }
+        
+        // Event listeners
+        closeModal.addEventListener('click', closeModalFunc);
+        prevBtn.addEventListener('click', showPrevImage);
+        nextBtn.addEventListener('click', showNextImage);
+        
+        // Close modal when clicking outside the image
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) {
+                closeModalFunc();
+            }
+        });
+        
+        // Keyboard navigation
+        document.addEventListener('keydown', (e) => {
+            if (!modal.classList.contains('active')) return;
+            
+            if (e.key === 'ArrowLeft') {
+                showPrevImage();
+            } else if (e.key === 'ArrowRight') {
+                showNextImage();
+            } else if (e.key === 'Escape') {
+                closeModalFunc();
+            }
+        });
+        
+        // Initialize gallery on page load
+        createGallery();
+    </script>
+</body>
+</html>
