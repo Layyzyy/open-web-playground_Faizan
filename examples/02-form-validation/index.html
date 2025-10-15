@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form Validation Example</title>
+    <style>
+        /* Basic page styling */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+        
+        /* Form container styling */
+        .form-container {
+            background: white;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            max-width: 500px;
+            width: 100%;
+        }
+        
+        h1 {
+            color: #333;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+        
+        /* Form group for each input field */
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 5px;
+            color: #555;
+            font-weight: 600;
+        }
+        
+        /* Input field styling */
+        input, select {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            font-size: 14px;
+            transition: border-color 0.3s;
+            box-sizing: border-box;
+        }
+        
+        /* Input focus state */
+        input:focus, select:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+        
+        /* Error state for invalid inputs */
+        input.error, select.error {
+            border-color: #f44336;
+        }
+        
+        /* Success state for valid inputs */
+        input.success, select.success {
+            border-color: #4CAF50;
+        }
+        
+        /* Error message styling */
+        .error-message {
+            color: #f44336;
+            font-size: 12px;
+            margin-top: 5px;
+            display: none;
+        }
+        
+        .error-message.show {
+            display: block;
+        }
+        
+        /* Submit button styling */
+        button[type="submit"] {
+            width: 100%;
+            padding: 12px;
+            background: #667eea;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        
+        button[type="submit"]:hover {
+            background: #5568d3;
+        }
+        
+        /* Success message after submission */
+        .success-message {
+            background: #4CAF50;
+            color: white;
+            padding: 15px;
+            border-radius: 5px;
+            margin-top: 20px;
+            display: none;
+            text-align: center;
+        }
+        
+        .success-message.show {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <div class="form-container">
+        <h1>Registration Form</h1>
+        
+        <!-- Registration form -->
+        <form id="registrationForm" novalidate>
+            <!-- Username field -->
+            <div class="form-group">
+                <label for="username">Username *</label>
+                <input type="text" id="username" name="username" placeholder="Enter username (min 3 characters)">
+                <div class="error-message" id="usernameError">Username must be at least 3 characters long</div>
+            </div>
+            
+            <!-- Email field -->
+            <div class="form-group">
+                <label for="email">Email *</label>
+                <input type="email" id="email" name="email" placeholder="Enter your email">
+                <div class="error-message" id="emailError">Please enter a valid email address</div>
+            </div>
+            
+            <!-- Password field -->
+            <div class="form-group">
+                <label for="password">Password *</label>
+                <input type="password" id="password" name="password" placeholder="Enter password (min 6 characters)">
+                <div class="error-message" id="passwordError">Password must be at least 6 characters long</div>
+            </div>
+            
+            <!-- Confirm Password field -->
+            <div class="form-group">
+                <label for="confirmPassword">Confirm Password *</label>
+                <input type="password" id="confirmPassword" name="confirmPassword" placeholder="Re-enter password">
+                <div class="error-message" id="confirmPasswordError">Passwords do not match</div>
+            </div>
+            
+            <!-- Age field -->
+            <div class="form-group">
+                <label for="age">Age *</label>
+                <input type="number" id="age" name="age" placeholder="Enter your age">
+                <div class="error-message" id="ageError">Age must be between 18 and 120</div>
+            </div>
+            
+            <!-- Submit button -->
+            <button type="submit">Register</button>
+        </form>
+        
+        <!-- Success message shown after validation -->
+        <div class="success-message" id="successMessage">
+            ✔️ Registration successful! Form data is valid.
+        </div>
+    </div>
+
+    <script>
+        // Get form and input elements
+        const form = document.getElementById('registrationForm');
+        const username = document.getElementById('username');
+        const email = document.getElementById('email');
+        const password = document.getElementById('password');
+        const confirmPassword = document.getElementById('confirmPassword');
+        const age = document.getElementById('age');
+        const successMessage = document.getElementById('successMessage');
+        
+        // Add event listener for form submission
+        form.addEventListener('submit', function(e) {
+            e.preventDefault(); // Prevent default form submission
+            
+            // Validate all fields
+            const isUsernameValid = validateUsername();
+            const isEmailValid = validateEmail();
+            const isPasswordValid = validatePassword();
+            const isConfirmPasswordValid = validateConfirmPassword();
+            const isAgeValid = validateAge();
+            
+            // If all fields are valid, show success message
+            if (isUsernameValid && isEmailValid && isPasswordValid && isConfirmPasswordValid && isAgeValid) {
+                successMessage.classList.add('show');
+                setTimeout(() => {
+                    successMessage.classList.remove('show');
+                    form.reset(); // Reset form after showing success
+                    clearValidationStates();
+                }, 3000);
+            }
+        });
+        
+        // Real-time validation on input
+        username.addEventListener('blur', validateUsername);
+        email.addEventListener('blur', validateEmail);
+        password.addEventListener('blur', validatePassword);
+        confirmPassword.addEventListener('blur', validateConfirmPassword);
+        age.addEventListener('blur', validateAge);
+        
+        // Validation function for username
+        function validateUsername() {
+            const usernameValue = username.value.trim();
+            const usernameError = document.getElementById('usernameError');
+            
+            if (usernameValue.length < 3) {
+                setError(username, usernameError);
+                return false;
+            } else {
+                setSuccess(username, usernameError);
+                return true;
+            }
+        }
+        
+        // Validation function for email using regex
+        function validateEmail() {
+            const emailValue = email.value.trim();
+            const emailError = document.getElementById('emailError');
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            
+            if (!emailRegex.test(emailValue)) {
+                setError(email, emailError);
+                return false;
+            } else {
+                setSuccess(email, emailError);
+                return true;
+            }
+        }
+        
+        // Validation function for password
+        function validatePassword() {
+            const passwordValue = password.value.trim();
+            const passwordError = document.getElementById('passwordError');
+            
+            if (passwordValue.length < 6) {
+                setError(password, passwordError);
+                return false;
+            } else {
+                setSuccess(password, passwordError);
+                return true;
+            }
+        }
+        
+        // Validation function for confirm password
+        function validateConfirmPassword() {
+            const confirmPasswordValue = confirmPassword.value.trim();
+            const passwordValue = password.value.trim();
+            const confirmPasswordError = document.getElementById('confirmPasswordError');
+            
+            if (confirmPasswordValue !== passwordValue || confirmPasswordValue === '') {
+                setError(confirmPassword, confirmPasswordError);
+                return false;
+            } else {
+                setSuccess(confirmPassword, confirmPasswordError);
+                return true;
+            }
+        }
+        
+        // Validation function for age
+        function validateAge() {
+            const ageValue = parseInt(age.value);
+            const ageError = document.getElementById('ageError');
+            
+            if (isNaN(ageValue) || ageValue < 18 || ageValue > 120) {
+                setError(age, ageError);
+                return false;
+            } else {
+                setSuccess(age, ageError);
+                return true;
+            }
+        }
+        
+        // Helper function to set error state
+        function setError(input, errorElement) {
+            input.classList.add('error');
+            input.classList.remove('success');
+            errorElement.classList.add('show');
+        }
+        
+        // Helper function to set success state
+        function setSuccess(input, errorElement) {
+            input.classList.remove('error');
+            input.classList.add('success');
+            errorElement.classList.remove('show');
+        }
+        
+        // Clear all validation states
+        function clearValidationStates() {
+            const inputs = form.querySelectorAll('input');
+            inputs.forEach(input => {
+                input.classList.remove('error', 'success');
+            });
+            const errors = form.querySelectorAll('.error-message');
+            errors.forEach(error => {
+                error.classList.remove('show');
+            });
+        }
+    </script>
+</body>
+</html>
