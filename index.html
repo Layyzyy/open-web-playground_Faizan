@@ -4,58 +4,74 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Open Web Playground</title>
+    <!-- Link to CSS stylesheet -->
     <!-- Contributors: Link your CSS stylesheets here -->
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-
     <header>
-        <h1>Welcome to Open Web Playground</h1>
-        <!-- Contributors: Expand navigation as project grows -->
-        <nav>
-            <ul>
-                <li><a href="#about">About</a></li>
-                <li><a href="#features">Features</a></li>
-                <li><a href="#demo">Demo</a></li>
-                <li><a href="#contribute">Contribute</a></li>
-            </ul>
+        <nav class="navbar" role="navigation" aria-label="Main Navigation">
+            <div class="nav-container">
+                <div class="nav-brand">
+                    <h1>Open Web Playground</h1>
+                </div>
+                
+                <!-- Hamburger Menu Button -->
+                <button class="hamburger" 
+                        id="hamburger" 
+                        aria-label="Toggle navigation menu" 
+                        aria-expanded="false" 
+                        aria-controls="nav-menu">
+                    <span class="hamburger-line"></span>
+                    <span class="hamburger-line"></span>
+                    <span class="hamburger-line"></span>
+                </button>
+                
+                <!-- Navigation Menu -->
+                <ul class="nav-menu" id="nav-menu" role="menubar">
+                    <li role="none"><a href="#about" role="menuitem" tabindex="0">About</a></li>
+                    <li role="none"><a href="#features" role="menuitem" tabindex="0">Features</a></li>
+                    <li role="none"><a href="#demo" role="menuitem" tabindex="0">Demo</a></li>
+                    <li role="none"><a href="#contribute" role="menuitem" tabindex="0">Contribute</a></li>
+                </ul>
+            </div>
         </nav>
     </header>
-
+    
     <main>
         <!-- Contributors: Describe your project's purpose and goals -->
         <section id="about">
             <h2>About This Project</h2>
             <p>A collaborative playground for learning web development.</p>
         </section>
-
+        
         <!-- Contributors: Highlight key features or benefits here -->
         <section id="features">
             <h2>Features</h2>
             <ul>
                 <li>Open source collaboration</li>
                 <li>Beginner-friendly environment</li>
-                <li>Learn by building together</li>
+                <li>Responsive Navigation Menu</li>
             </ul>
         </section>
-
+        
         <!-- Contributors: Add interactive demos and live examples -->
         <section id="demo">
-            <h2>Live Demo</h2>
-            <p>Add your interactive demos and projects here.</p>
+            <h2>Demo</h2>
+            <p>Try resizing your browser window to see the responsive navigation in action!</p>
         </section>
-
+        
         <!-- Contributors: Explain how others can get involved -->
         <section id="contribute">
-            <h2>How to Contribute</h2>
-            <p>Fork this repo, add features, and submit a pull request!</p>
+            <h2>Contribute</h2>
+            <p>We welcome contributions from developers of all skill levels!</p>
         </section>
     </main>
-
+    
+    <script src="script.js"></script>
     <footer>
-        <p>&copy; 2025 Open Web Playground - Built by contributors like you!</p>
+        <p>© 2025 Open Web Playground - Built by contributors like you!</p>
     </footer>
-
     <!-- Contributors: Link your JavaScript files here -->
-
 </body>
 </html>
