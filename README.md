@@ -17,4 +17,4 @@ Database: MongoDB
 
 Gamification Engine: Custom leaderboards, achievements, progress tracking
 
-Deployment: GitHub Pages, Heroku, or Verce
+Deployment: GitHub Pages, Heroku, or Verce.
