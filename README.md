@@ -1,5 +1,7 @@
 # open-web-playground
 
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+
 A beginner-friendly, collaborative playground for practicing and learning HTML, CSS, and JavaScript. Perfect for first-time contributors!
 
 ## 📚 About
@@ -50,47 +52,32 @@ npm run test:coverage
 
 The coverage report will be generated in the `coverage/` directory. Open `coverage/index.html` in your browser to view detailed coverage information.
 
-## 📁 Project Structure
-
-```
-open-web-playground/
-├── index.html          # Main HTML file
-├── utils.js            # Utility functions
-├── tests/              # Test files
-│   └── utils.test.js   # Unit tests for utils.js
-├── package.json        # Project dependencies and scripts
-└── README.md          # Project documentation
-```
-
 ## 🤝 Contributing
 
-We welcome contributions! Here's how you can help:
+We welcome contributions! Follow these steps to contribute:
 
-1. Fork the repository
-2. Create a new branch (`git checkout -b feature/your-feature-name`)
-3. Make your changes
-4. Write or update tests as needed
-5. Ensure all tests pass (`npm test`)
-6. Commit your changes (`git commit -m 'Add some feature'`)
-7. Push to the branch (`git push origin feature/your-feature-name`)
-8. Open a Pull Request
+1. **Fork the repository**
+2. **Create a new branch** for your feature:
+   ```bash
+   git checkout -b feature-name
+   ```
+3. **Make your changes** and commit them:
+   ```bash
+   git commit -m "Add feature description"
+   ```
+4. **Push to your fork**:
+   ```bash
+   git push origin feature-name
+   ```
+5. **Open a Pull Request** and describe your changes.
 
-### Code Quality
+### Testing Guidelines
 
-- Write clean, readable code
-- Add comments where necessary
-- Follow existing code style
-- Write tests for new features
-- Ensure all tests pass before submitting PR
-
-## 🏷️ Hacktoberfest
-
-This project participates in [Hacktoberfest](https://hacktoberfest.com/)! We welcome contributions from developers of all skill levels during October.
+- Write tests for new features and bug fixes
+- Ensure all tests pass before submitting a PR
+- Include both positive and negative test cases
+- Follow the existing test structure in `tests/` directory
 
 ## 📝 License
 
-This project is licensed under the MIT License.
-
-## 🌟 Show Your Support
-
-Give a ⭐️ if you found this project helpful!
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
