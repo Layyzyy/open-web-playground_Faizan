@@ -1,131 +1,287 @@
-Here’s a **complete beginner-friendly `CONTRIBUTING.md` file** you can place in your project’s root directory 👇
+# Contributing to Open Web Playground 💡
+
+Thank you for your interest in contributing to the Open Web Playground project! 🎉
+
+We welcome contributions of all kinds — whether you're fixing bugs, improving documentation, adding new features, or proposing enhancements. This guide will help you get started.
 
 ---
 
-## 🧭 CONTRIBUTING.md
+## 📜 Code of Conduct
 
-# Contributing to This Project 💡
+This project adheres to a Code of Conduct to ensure a welcoming and inclusive environment for all contributors. By participating, you are expected to uphold this code.
 
-Thank you for your interest in contributing! 🎉
-Whether you’re fixing a bug, improving documentation, or proposing a new feature — your contribution is appreciated.
-
----
-
-## 🪄 1. Fork and Clone the Repository
-
-1. Click the **Fork** button (top-right corner of this repository page) to create your copy.
-2. Clone your forked repository to your local machine:
-
-   ```bash
-   git clone https://github.com/<your-username>/<repository-name>.git
-   ```
-3. Navigate to the project directory:
-
-   ```bash
-   cd <repository-name>
-   ```
-4. Add the main repository as a remote to keep your fork updated:
-
-   ```bash
-   git remote add upstream https://github.com/<original-owner>/<repository-name>.git
-   ```
+Please review our [Code of Conduct](CODE_OF_CONDUCT.md) before contributing. We are committed to providing a harassment-free experience for everyone, regardless of age, body size, disability, ethnicity, gender identity and expression, level of experience, nationality, personal appearance, race, religion, or sexual identity and orientation.
 
 ---
 
-## 🌿 2. Create a New Branch
+## 🪄 How to Fork and Clone the Repository
 
-Before making changes, create a new branch:
+### 1. Fork the Repository
+
+1. Navigate to the [Open Web Playground repository](https://github.com/Faizan-902/open-web-playground)
+2. Click the **Fork** button in the top-right corner to create your own copy of the repository
+
+### 2. Clone Your Fork
+
+Clone your forked repository to your local machine:
+
+```bash
+git clone https://github.com/<your-username>/open-web-playground.git
+cd open-web-playground
+```
+
+### 3. Add Upstream Remote
+
+Add the original repository as an upstream remote to keep your fork synchronized:
+
+```bash
+git remote add upstream https://github.com/Faizan-902/open-web-playground.git
+git fetch upstream
+```
+
+---
+
+## 🌿 Steps to Create a Branch
+
+Always create a new branch for your changes. This keeps your work organized and makes it easier to manage multiple contributions.
+
+### Create and Switch to a New Branch
 
 ```bash
 git checkout -b <branch-name>
 ```
 
-👉 **Example:**
+**Branch Naming Conventions:**
+- Use descriptive names that reflect the purpose of your changes
+- Use kebab-case (lowercase with hyphens)
+- Examples:
+  - `fix-navigation-bug`
+  - `add-dark-mode-feature`
+  - `update-readme-documentation`
+  - `improve-accessibility`
 
-```bash
-git checkout -b fix-readme-typo
+---
+
+## ✍️ Commit Message Conventions
+
+Good commit messages help maintain a clear project history. Follow these guidelines:
+
+### Commit Message Format
+
+```
+<type>: <short description>
+
+<optional detailed description>
+
+<optional footer>
 ```
 
-Keep branches short and meaningful — one branch per feature or fix.
+### Commit Types
+
+- **feat**: A new feature
+- **fix**: A bug fix
+- **docs**: Documentation changes
+- **style**: Code style changes (formatting, missing semicolons, etc.)
+- **refactor**: Code refactoring without changing functionality
+- **test**: Adding or updating tests
+- **chore**: Maintenance tasks, dependency updates, etc.
+
+### Examples
+
+```bash
+# Good commit messages
+git commit -m "feat: add user authentication system"
+git commit -m "fix: resolve navigation menu overflow on mobile"
+git commit -m "docs: update installation instructions in README"
+git commit -m "style: format code according to project style guide"
+
+# Bad commit messages (avoid these)
+git commit -m "fixed stuff"
+git commit -m "updates"
+git commit -m "asdfgh"
+```
+
+### Best Practices
+
+- Use the imperative mood ("add feature" not "added feature")
+- Keep the first line under 50 characters
+- Capitalize the first letter
+- Don't end with a period
+- Provide context in the detailed description if needed
 
 ---
 
-## 💻 3. Coding Standards and Best Practices
+## 🚀 Pull Request Process
 
-Follow these simple rules to keep the code clean and consistent:
+Once you've made your changes and committed them to your branch, you're ready to submit a pull request.
 
-* ✅ Use **clear variable and function names** (e.g., `getUserData` not `gud`).
-* ✅ Follow **consistent indentation** (4 spaces or per project’s style).
-* ✅ Write **comments** for complex logic.
-* ✅ Run tests (if available) before submitting a pull request.
-* ✅ Keep commits **small and meaningful** — use descriptive commit messages like:
+### 1. Push Your Changes
 
-  ```
-  fix: corrected typo in README
-  feat: added login form validation
-  ```
+Push your branch to your forked repository:
 
----
+```bash
+git push origin <branch-name>
+```
 
-## 🚀 4. Submitting a Pull Request (PR)
+### 2. Create a Pull Request
 
-1. Commit your changes:
+1. Navigate to the [original repository](https://github.com/Faizan-902/open-web-playground)
+2. Click the **Pull requests** tab
+3. Click **New pull request**
+4. Click **compare across forks**
+5. Select your fork and branch as the source
+6. Click **Create pull request**
 
-   ```bash
-   git add .
-   git commit -m "Describe your change briefly"
-   ```
-2. Push your branch:
+### 3. Fill Out the PR Template
 
-   ```bash
-   git push origin <branch-name>
-   ```
-3. Go to your **forked repo on GitHub**, and you’ll see a “Compare & pull request” button.
-4. Click it and open a new pull request (PR).
+Provide a clear and detailed description of your changes:
 
-👉 **Tips for a great PR:**
+**Title:** Use a clear, descriptive title
 
-* Explain what you changed and why.
-* Mention related issue numbers (if any), e.g. `Fixes #12`.
-* Request review from maintainers.
+**Description should include:**
+- **What:** What changes did you make?
+- **Why:** Why did you make these changes?
+- **How:** How did you implement the changes?
+- **Testing:** What testing did you perform?
+- **Related Issues:** Reference any related issues (e.g., "Fixes #123" or "Addresses #456")
 
----
+### 4. Review Process
 
-## 🐞 5. Reporting Issues
+- A maintainer will review your pull request
+- You may be asked to make changes or provide additional information
+- Be responsive to feedback and make requested updates
+- Once approved, your PR will be merged into the main branch
 
-Found a bug or have an idea? Open an issue!
+### PR Checklist
 
-When creating an issue:
+Before submitting, ensure:
 
-* Use a **clear title** and **detailed description**.
-* Include steps to reproduce the problem (if applicable).
-* Add screenshots or logs if needed.
-
----
-
-## 🏷️ 6. Labels
-
-We use the following labels to categorize issues:
-
-| Label                | Description                                  |
-| -------------------- | -------------------------------------------- |
-| **documentation**    | Related to docs or README updates            |
-| **good first issue** | Beginner-friendly tasks for new contributors |
-| **help wanted**      | Assistance needed — open to contributors     |
+- [ ] Code follows the project's style guidelines
+- [ ] Commits follow the commit message conventions
+- [ ] Documentation has been updated (if applicable)
+- [ ] Tests have been added or updated (if applicable)
+- [ ] All tests pass locally
+- [ ] Branch is up to date with the main branch
 
 ---
 
-## 💬 7. Need Help?
+## 🐛 Issue Reporting Guidelines
 
-If you’re stuck or unsure, don’t hesitate to:
+Found a bug or have a feature request? We'd love to hear about it!
 
-* Comment on the issue or PR you’re working on.
-* Ask in the project’s discussion or community chat (if available).
+### Before Creating an Issue
 
-We’re happy to guide you through! 💪
+1. **Search existing issues** to avoid duplicates
+2. **Check closed issues** to see if the problem has been addressed
+3. **Ensure you're using the latest version** of the project
+
+### Creating a Bug Report
+
+When reporting a bug, include:
+
+**Required Information:**
+- **Title:** Clear, concise description of the issue
+- **Description:** Detailed explanation of the problem
+- **Steps to Reproduce:** Step-by-step instructions to recreate the issue
+- **Expected Behavior:** What you expected to happen
+- **Actual Behavior:** What actually happened
+- **Environment:**
+  - Operating System (e.g., Windows 10, macOS 13.0, Ubuntu 22.04)
+  - Browser and version (if applicable)
+  - Project version or commit hash
+- **Screenshots/Logs:** Any relevant screenshots or error logs
+
+**Bug Report Template:**
+
+```markdown
+## Description
+[Clear description of the bug]
+
+## Steps to Reproduce
+1. Go to '...'
+2. Click on '...'
+3. Scroll down to '...'
+4. See error
+
+## Expected Behavior
+[What should happen]
+
+## Actual Behavior
+[What actually happens]
+
+## Environment
+- OS: [e.g., Windows 10]
+- Browser: [e.g., Chrome 120]
+- Version: [e.g., v1.2.3]
+
+## Screenshots
+[If applicable, add screenshots]
+
+## Additional Context
+[Any other relevant information]
+```
+
+### Creating a Feature Request
+
+When proposing a new feature, include:
+
+- **Title:** Clear description of the feature
+- **Problem:** What problem does this feature solve?
+- **Proposed Solution:** How should this feature work?
+- **Alternatives:** Have you considered any alternatives?
+- **Additional Context:** Any other relevant information
+
+**Feature Request Template:**
+
+```markdown
+## Feature Description
+[Clear description of the proposed feature]
+
+## Problem Statement
+[What problem does this solve?]
+
+## Proposed Solution
+[How should this feature work?]
+
+## Alternatives Considered
+[What other solutions have you thought about?]
+
+## Additional Context
+[Any other relevant information, mockups, examples]
+```
 
 ---
 
-### ❤️ Thank You for Contributing!
+## 💻 Development Guidelines
 
+### Code Style
 
+- Follow the existing code style and conventions
+- Use meaningful variable and function names
+- Write clear, concise comments where necessary
+- Keep functions small and focused on a single task
+
+### Testing
+
+- Test your changes thoroughly before submitting
+- Add tests for new features when applicable
+- Ensure all existing tests pass
+
+### Documentation
+
+- Update relevant documentation when making changes
+- Add comments to complex code sections
+- Update the README if your changes affect usage
+
+---
+
+## 🙏 Thank You!
+
+Your contributions make this project better for everyone. We appreciate your time and effort!
+
+If you have any questions or need help, feel free to:
+- Open an issue for discussion
+- Reach out to the maintainers
+- Join our community discussions
+
+Happy coding! 🚀
