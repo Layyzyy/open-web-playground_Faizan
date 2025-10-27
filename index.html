@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Open Web Playground</title>
+    <title>Open Web Playground - Learn Web Development</title>
     <!-- Link to CSS stylesheet -->
     <!-- Contributors: Link your CSS stylesheets here -->
     <link rel="stylesheet" href="styles.css">
@@ -17,22 +17,18 @@
                 </div>
                 
                 <!-- Theme Switcher Button -->
-                <button class="theme-toggle" id="theme-toggle" aria-label="Toggle dark/light mode">
-                    <svg class="sun-icon" width="20" height="20" viewBox="0 0 20 20" fill="currentColor">
+                <button class="theme-toggle" id="theme-toggle" aria-label="Toggle dark mode and light mode">
+                    <svg class="sun-icon" width="20" height="20" viewBox="0 0 20 20" fill="currentColor" role="img" aria-label="Sun icon for light mode">
                         <circle cx="10" cy="10" r="5"/>
                         <path d="M10 0v3M10 17v3M0 10h3M17 10h3M2.93 2.93l2.12 2.12M14.95 14.95l2.12 2.12M2.93 17.07l2.12-2.12M14.95 5.05l2.12-2.12"/>
                     </svg>
-                    <svg class="moon-icon" width="20" height="20" viewBox="0 0 20 20" fill="currentColor">
+                    <svg class="moon-icon" width="20" height="20" viewBox="0 0 20 20" fill="currentColor" role="img" aria-label="Moon icon for dark mode">
                         <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"/>
                     </svg>
                 </button>
                 
                 <!-- Hamburger Menu Button -->
-                <button class="hamburger" 
-                        id="hamburger" 
-                        aria-label="Toggle navigation menu" 
-                        aria-expanded="false" 
-                        aria-controls="nav-menu">
+                <button class="hamburger" id="hamburger" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="nav-menu">
                     <span class="hamburger-line"></span>
                     <span class="hamburger-line"></span>
                     <span class="hamburger-line"></span>
@@ -51,14 +47,14 @@
     
     <main>
         <!-- Contributors: Describe your project's purpose and goals -->
-        <section id="about" class="card">
-            <h2>About This Project</h2>
+        <section id="about" class="card" aria-labelledby="about-heading">
+            <h2 id="about-heading">About This Project</h2>
             <p>A collaborative playground for learning web development with modern design features including dark mode support and glassmorphism effects.</p>
         </section>
         
         <!-- Contributors: Highlight key features or benefits here -->
-        <section id="features" class="card">
-            <h2>Features</h2>
+        <section id="features" class="card" aria-labelledby="features-heading">
+            <h2 id="features-heading">Features</h2>
             <ul>
                 <li>Open source collaboration</li>
                 <li>Beginner-friendly environment</li>
@@ -70,22 +66,23 @@
         </section>
         
         <!-- Contributors: Add interactive demos and live examples -->
-        <section id="demo" class="card">
-            <h2>Demo</h2>
+        <section id="demo" class="card" aria-labelledby="demo-heading">
+            <h2 id="demo-heading">Demo</h2>
             <p>Try resizing your browser window to see the responsive navigation in action! Click the theme toggle button to switch between light and dark modes.</p>
         </section>
         
         <!-- Contributors: Explain how others can get involved -->
-        <section id="contribute" class="card">
-            <h2>Contribute</h2>
+        <section id="contribute" class="card" aria-labelledby="contribute-heading">
+            <h2 id="contribute-heading">Contribute</h2>
             <p>We welcome contributions from developers of all skill levels!</p>
         </section>
     </main>
     
-    <script src="script.js"></script>
-    <footer>
-        <p>© 2025 Open Web Playground - Built by contributors like you!</p>
+    <footer role="contentinfo">
+        <p>&copy; 2025 Open Web Playground - Built by contributors like you!</p>
     </footer>
+    
     <!-- Contributors: Link your JavaScript files here -->
+    <script src="script.js"></script>
 </body>
 </html>
